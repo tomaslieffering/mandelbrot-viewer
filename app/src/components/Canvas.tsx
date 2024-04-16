@@ -20,7 +20,7 @@ export function Canvas(props: CanvasProps) {
 	const [scale, setScale] = useState(1);
 
   const drawMandelbrot = (imageData, context, canvas) => {
-		
+
     mandelbrot.generate_mandelbrot(count, 0, 1);
 
     const outputPointer = mandelbrot.get_output_buffer_pointer();
