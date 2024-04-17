@@ -2,7 +2,7 @@ use wasm_bindgen::prelude::*;
 
 const OUTPUT_X_SIZE: usize = 1280;
 const OUTPUT_Y_SIZE: usize = 720;
-const MAX_ITERATIONS: u32 = 255;
+const MAX_ITERATIONS: u32 = 500;
 
 const OUTPUT_BUFFER_SIZE: usize = OUTPUT_X_SIZE * OUTPUT_Y_SIZE * 4;
 static mut OUTPUT_BUFFER: [u8; OUTPUT_BUFFER_SIZE] = [0; OUTPUT_BUFFER_SIZE];
@@ -21,6 +21,9 @@ fn get_color(i: u32) -> u8 {
     if i > MAX_ITERATIONS {
         return 255;
     }
+    if i == MAX_ITERATIONS {
+        return 255;
+    }
     let color = (((i as f64) / (MAX_ITERATIONS as f64)) * 255.0).round() as u8;
     return color;
 }
@@ -33,7 +36,7 @@ pub fn generate_mandelbrot(
     ) {
 
     for x in 0..OUTPUT_X_SIZE {
-        let x_scale_pos = ((x as f64) / (OUTPUT_X_SIZE as f64)) * (3.5 / scale) - (2.5 / scale) - x_center;
+        let x_scale_pos = ((x as f64) / (OUTPUT_X_SIZE as f64)) * (3.55 / scale) - ((3.55 / 2.0) / scale) - x_center;
         for y in 0..OUTPUT_Y_SIZE {
             let y_scale_pos = ((y as f64) / (OUTPUT_Y_SIZE as f64)) * (2.0 / scale) - (1.0 / scale) - y_center;
             
